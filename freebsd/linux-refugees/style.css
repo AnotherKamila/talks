@@ -4,8 +4,8 @@ body {font-family: 'Lato', sans-serif; color: #002b36; text-rendering: optimizeL
 h1, h2, h3 {font-family: 'PT Sans', sans-serif; color: #586e75;}
 pre, code {font-family: 'Inconsolata', monospace;}
 
-li {margin: 1em 0;}
-.compact li {margin: 0;}
+li ul {margin: 0.2em 0;}
+.expanded li {margin: 0.5em 0;}
 
 .floatleft {float: left; margin-right: 2em;}
 .floatright {float: right; margin-left: 2em;}

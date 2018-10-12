@@ -29,17 +29,96 @@ TODO what do we call this actually?
 
 ---
 
-# Slide Title
+# The New Sysadmin
 
-Text text text!
+Demo:
 
-Sauerstoffflasche! `Sauerstoffflasche` I tell ya!
+.center[.blue[
+**"The website is not working.  
+Here is the root password."**
+]]
 
-```python
-def test():
-    print('Yay!')  # I am a comment!
-    # Sauerstoffflasche!
-```
+---
+
+class: contrast, expanded
+
+# The Battle Plan
+
+1. Make yourself at home
+   * Hello, FreeBSD!
+2. System Administration Basics
+   * where to look
+3. Solving the Problem
+   * a look at 3 different possible causes and how FreeBSD helps us solve them
+
+---
+
+class: contrast, expanded
+
+# The Battle Plan
+
+1. **Make yourself at home**
+   * **Hello, FreeBSD!**
+2. System Administration Basics
+   * where to look
+3. Solving the Problem
+   * a look at 3 different possible causes and how FreeBSD helps us solve them
+
+---
+
+# Make yourself at home
+
+* make yourself a user, get a nice shell
+  * root shell is `csh`
+  * `pkg install bash` or `zsh` or `fish` or ...
+  * `chsh -s /usr/local/bin/something`
+  * reminder: `sh` is really `sh`!
+* get an editor
+  * `pkg install vim` or `emacs` or ...
+  * reminder: `vi` is really `vi`!
+* `pkg install sudo`
+  * add yourself to group `wheel` (**not** `sudo`)
+
+---
+
+# Make yourself at home
+
+* CLI utilities (coreutils) are slightly different
+  * most are easy to get used to
+  * if you need GNU versions: `pkg install coreutils` and use them with a `g` prefix: `gfind`, `ggrep`...
+  * but you probably don't
+* notably `make` is very different
+  * you probably want `pkg install gmake`
+  * `make` is BSD make, `gmake` is GNU make
+* [GNU vs BSD commands reference](#TODO)
+
+---
+
+class: contrast, expanded
+
+# The Battle Plan
+
+1. Make yourself at home
+   * Hello, FreeBSD!
+2. **System Administration Basics**
+   * **where to look**
+3. Solving the Problem
+   * a look at 3 different possible causes and how FreeBSD helps us solve them
+
+---
+---
+
+class: contrast, expanded
+
+# The Battle Plan
+
+1. Make yourself at home
+   * Hello, FreeBSD!
+2. System Administration Basics
+   * where to look
+3. **Solving the Problem**
+   * **a look at 3 different possible causes and how FreeBSD helps us solve them**
+
 
     </textarea>
     <script src="remark.js" type="text/javascript">
