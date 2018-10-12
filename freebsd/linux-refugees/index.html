@@ -5,6 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="style.css" />
     <style type="text/css">
+     @import url('https://fonts.googleapis.com/css?family=Lobster');
+     .display { font-family: 'Lobster', cursive; font-size: 1.6em; }
      .remark-slide-content {
          padding: 1em 3em;
          font-size: 32px;
@@ -25,17 +27,20 @@ class: center, middle, contrast
 
 # FreeBSD for Linux Refugees
 
-TODO what do we call this actually?
+Kamila Součková  
+22 October 2018, Nuku'alofa, Tonga  
 
 ---
+
+class: center
 
 # The New Sysadmin
 
 Demo:
 
-.center[.blue[
-**"The website is not working.  
-Here is the root password."**
+.display[.blue[
+"The website is not working.  
+Here is the root password."
 ]]
 
 ---
@@ -54,6 +59,7 @@ class: contrast, expanded
 ---
 
 class: contrast, expanded
+count: false
 
 # The Battle Plan
 
@@ -83,13 +89,12 @@ class: contrast, expanded
 
 # Make yourself at home
 
-* CLI utilities (coreutils) are slightly different
+* CLI utilities (coreutils and such) are slightly different
   * most are easy to get used to
   * if you need GNU versions: `pkg install coreutils` and use them with a `g` prefix: `gfind`, `ggrep`...
-  * but you probably don't
+  * also `pkg install gtar` or other `g`-things
 * notably `make` is very different
   * you probably want `pkg install gmake`
-  * `make` is BSD make, `gmake` is GNU make
 * [GNU vs BSD commands reference](#TODO)
 
 ---
