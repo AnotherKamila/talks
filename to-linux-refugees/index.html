@@ -74,8 +74,21 @@ count: false
 
 # Make yourself at home
 
+???
+
+```
+pw useradd -n kamila -m
+pkg install fish
+chsh -s /usr/local/bin/fish kamila
+pkg install vim
+pkg install sudo
+pw usermod -n kamila -G wheel
+```
+
+--
+
 * make yourself a user, get a nice shell
-  * root shell is `csh`
+  * `man pw`
   * `pkg install bash` or `zsh` or `fish` or ...
   * `chsh -s /usr/local/bin/something`
   * reminder: `sh` is really `sh`!
@@ -83,7 +96,7 @@ count: false
   * `pkg install vim` or `emacs` or ...
   * reminder: `vi` is really `vi`!
 * `pkg install sudo`
-  * add yourself to group `wheel` (**not** `sudo`)
+  * add yourself to group `wheel` (**not** `sudo`):
 
 ---
 
@@ -95,7 +108,7 @@ count: false
   * also `pkg install gtar` or other `g`-things
 * notably `make` is very different
   * you probably want `pkg install gmake`
-* [GNU vs BSD commands reference](#TODO)
+  * Linux vs BSD commands ref TBA soon<sup>TM</sup>
 
 ---
 
@@ -111,6 +124,14 @@ class: contrast, expanded
    * a look at 3 different possible causes and how FreeBSD helps us solve them
 
 ---
+
+# Where to Look
+
+* `ps` and other basic system utilities are more or less the same
+  * `netstat -l` is called `sockstat -l`
+* `/etc/rc.conf` has services
+* use `service foo start` and such
+
 ---
 
 class: contrast, expanded
@@ -126,33 +147,78 @@ class: contrast, expanded
 
 ---
 
-class: center
+# .center[# #1]
 
-# #1
+???
+
+```
+man hier
+find the config file
+man zfs, /snapshot
+note snapdir
+zfs get snapdir zroot
+try: zfs set snapdir=shown zroot, note that it tells you what you need
+zfs set snapdir=visible zroot
+cd /.zfs/snapshot (now we have it!)
+find . -name nginx.conf | xargs grep 'location'
+cp ./daily-2018-10-16/usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
+service nginx start
+```
 
 --
 
-TODO summary
+* `man hier` tells you what is where
+
+--
+
+* files overwritten / corrupted / eaten by a squirrel: ZFS to the rescue!
+* `man zfs`, search for snapshot
+* can rollback everything, or mount `.zfs/snapshot` and just copy the good file
 
 ---
 
-class: center
+# .center[# #2]
 
-# #2
+???
+
+BEFORE: `service pf start`
 
 --
 
-TODO summary
+* firewall on FreeBSD: pf
+* `man pf.conf` explains the config file syntax
+* `man pf` has some general info about pf
+* an advanced firewall with some awesome features such as very nice logging — more details later
 
 ---
 
-class: center
+# .center[# #3]
 
-# #3
+???
+
+```
+cat /usr/local/etc/nginx/nginx.conf, note the lua -- or will nginx tell us?
+cd /usr/ports/*/nginx
+make config
+make install
+```
 
 --
 
-TODO summary
+* **ports** are the "recipes" for building software for FreeBSD
+    * look for them in `/usr/ports/<topic>/<program>`
+* packages are just pre-built ports
+* you can use ports to change how things are built
+    * e.g. `make config`
+* in reality, you would usually not use `make install` directly, but a helper such as `portmaster`, `synth` or `poudriere`
+
+---
+
+class: center, middle
+
+# Questions?
+
+:-)
 
 
     </textarea>
