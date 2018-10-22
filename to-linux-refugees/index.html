@@ -79,7 +79,7 @@ count: false
 ```
 pw useradd -n kamila -m
 pkg install fish
-chsh -s /usr/local/bin/fish kamila
+chsh -s fish kamila
 pkg install vim
 pkg install sudo
 pw usermod -n kamila -G wheel
@@ -90,13 +90,13 @@ pw usermod -n kamila -G wheel
 * make yourself a user, get a nice shell
   * `man pw`
   * `pkg install bash` or `zsh` or `fish` or ...
-  * `chsh -s /usr/local/bin/something`
+  * `chsh -s fish user
   * reminder: `sh` is really `sh`!
 * get an editor
   * `pkg install vim` or `emacs` or ...
   * reminder: `vi` is really `vi`!
-* `pkg install sudo`
-  * add yourself to group `wheel` (**not** `sudo`):
+* `pkg install sudo; visudo`
+  * add yourself to group `wheel`
 
 ---
 
@@ -168,6 +168,7 @@ service nginx start
 --
 
 * `man hier` tells you what is where
+* packaged stuff goes to `/usr/local`, including `/usr/local/etc`
 
 --
 
