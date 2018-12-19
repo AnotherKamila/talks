@@ -42,9 +42,11 @@ class: contrast, expanded, middle
 # Aims
 
 1. **Implement an L4 load balancer**  
-   have a server pool with multiple actual servers
+   Single virtual IP for a pool of application servers
 2. **Be able to choose the _distribution_:**  
-   if a server is busy, it should get fewer new connections
+   If a server is very busy, it should get fewer new connections
+
+(In the data plane. At line rate.)
 
 ---
 
@@ -55,7 +57,7 @@ class: contrast, expanded, middle
 **Up to L3: it is a router**  
 Details: [How do routers really work?](https://kamila.is/teaching/how-routers-work/)
 
-**Address rewriting on L4:**
+**L4 flow:**
 
 .width90[![simple flow chart](./img/simple-packet.svg)]
 
@@ -63,8 +65,6 @@ Details: [How do routers really work?](https://kamila.is/teaching/how-routers-wo
   * mind the return path
 
 ???
-
-also: TCP checksum
 
 ---
 
@@ -171,7 +171,7 @@ Three problems:
 
 --
 
-**Fix:** Keep assigned connections in a table
+**Fix:** Keep server assignments in a connections table
 
 .center.width100[![conn table](./img/connections.svg)]
 
@@ -193,6 +193,8 @@ Table writes are not instant:
 discard only after all connections using them are in `conn_table`
 
 ---
+
+exclude: true
 
 # Not breaking connections
 
@@ -216,23 +218,22 @@ table ipv4_dips {
 ```
 
 * write to a register from the control plane to set the active version
-* **bonus:** transactions for free: poke at a "scratch" table version and only flip when ready
 
 ---
 
-# The fourth problem:
+# The third problem:
 
-For a given connection, how do we know which pool version it belongs to (if any)?
+For a given packet, how to determine to which pool version that connection belongs?
 
 --
 
 **Fix:**
 
-Hard-code a few "version slots" (I use 4).
+Hard-code a few "version slots" (I use 4) and cycle through them.
 
-Use a Bloom filter (set membership) to decide if the packet belongs to version slot _i_.
+Use a Bloom filter (set membership) to decide whether the packet belongs to version slot _i_.
 
-Cycle through the available version slots.
+Insert new connections into its version's Bloom filter.
 
 ---
 
@@ -331,19 +332,35 @@ and the test passed
 
 ---
 
-# Demo
+class: contrast, center, middle
+
+# Demo!
 
 ---
 
+exclude: true
+
+# Demo
+
+We need to:
+* start servers
+* configure load balancer:
+  * teach it how to get load and how to balance
+  * add server pools
+* connect to servers
+
+---
+
+class: tall
+
 # Conclusion
 
-* project completed:
-  * TODO screenshot of graph
-  * table versioning + Bloom filters to find version
-* bonus:
-    * universal abstraction over P4 tables with async writes, atomic operations (`.commit()`), transparent versioning
-    * composable controllers for L2 and L3
-    * integration tests made easy
+.center.width60[![screenshot](./img/demo1-narrow-loadonly.png)]
+
+* table versioning + Bloom filters to find version
+* prefixes idea for weights
+* test-driven development
+* interesting software engineering aspects
 
 ---
 
@@ -352,6 +369,10 @@ class: center, middle
 # Questions?
 
 :-)
+
+---
+
+.width100[![demo](./img/demo1-wide.png)]
 
 
     </textarea>
