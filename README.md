@@ -1,10 +1,3 @@
-Slides for some of the talks I gave in various places.
+**This repo is out of date, my talks now live in [my website's repo](https://github.com/AnotherKamila/kamila.is/tree/master/talking).**
 
-* **[FreeBSD](freebsd)**
-  * [FreeBSD for Linux Refugees](to-linux-refugees)
-* **Security**
-  * [Paper Overview: A Comprehensive Formal Security Analysis of OAuth 2.0](oauth)
-
-## License
-
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+If you want to view my talks rather than wade through the source code, go to [kamila.is/talking](https://kamila.is/talking).
